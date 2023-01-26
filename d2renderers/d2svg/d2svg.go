@@ -1141,9 +1141,6 @@ func embedFonts(buf *bytes.Buffer, fontFamily *d2fonts.FontFamily) {
 	buf.WriteString(`]]></style>`)
 }
 
-//go:embed fitToScreen.js
-var fitToScreenScript string
-
 // TODO minify output at end
 func Render(diagram *d2target.Diagram, opts *RenderOpts) ([]byte, error) {
 	var sketchRunner *d2sketch.Runner
@@ -1171,10 +1168,6 @@ func Render(diagram *d2target.Diagram, opts *RenderOpts) ([]byte, error) {
 %s%s
 ]]>
 </style>`, styleCSS, styleCSS2))
-
-	// this script won't run in --watch mode because script tags are ignored when added via el.innerHTML = element
-	// https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
-	buf.WriteString(fmt.Sprintf(`<script type="application/javascript"><![CDATA[%s]]></script>`, fitToScreenScript))
 
 	hasMarkdown := false
 	for _, s := range diagram.Shapes {
