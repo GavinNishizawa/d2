@@ -582,6 +582,27 @@ b
 `,
 		},
 		loadFromFile(t, "unconnected"),
+		{
+			name: "direction_right_label_padding",
+			script: `
+direction: right
+ninety nine: {
+  style.font-size: 99
+  sixty four: {
+    style.font-size: 64
+    thirty two: {
+      style.font-size: 32
+      sixteen: {
+        style.font-size: 16
+        eight: {
+          style.font-size: 8
+        }
+      }
+    }
+  }
+}
+`,
+		},
 	}
 
 	runa(t, tcs)
